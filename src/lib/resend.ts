@@ -5,7 +5,13 @@ function getResend() {
   return new Resend(process.env.RESEND_API_KEY);
 }
 
-const FROM = () => process.env.RESEND_FROM_EMAIL || 'קוגנט <noreply@cognet.ai>';
+// fallback ל-sandbox של Resend עד שהדומיין מאומת
+const SANDBOX_FROM = 'Cognet CRM <onboarding@resend.dev>';
+const FROM = () => {
+  const env = process.env.RESEND_FROM_EMAIL;
+  if (!env || env.includes('cognet.ai')) return SANDBOX_FROM;
+  return env;
+};
 const ADMIN = () => process.env.ADMIN_EMAIL || 'nadav@cognet.ai';
 
 export async function sendLeadConfirmation(lead: Lead) {

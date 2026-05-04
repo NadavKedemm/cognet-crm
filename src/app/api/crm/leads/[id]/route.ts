@@ -9,7 +9,6 @@ function checkAuth(req: NextRequest): boolean {
 
 const updateSchema = z.object({
   status: z.enum(['חדש', 'בטיפול', 'הומר', 'אבוד']).optional(),
-  notes: z.string().optional(),
 });
 
 export async function PATCH(

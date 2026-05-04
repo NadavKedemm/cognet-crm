@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { name, email, phone, utm_source, utm_medium, utm_campaign } = result.data;
+    const { name, email, phone, utm_source } = result.data;
 
     if (!email.includes('@') || !email.includes('.')) {
       return NextResponse.json({ error: 'נא להזין כתובת אימייל תקינה' }, { status: 400 });
@@ -58,10 +58,6 @@ export async function POST(req: NextRequest) {
         email,
         phone: phone || null,
         status: 'חדש',
-        source: 'דף נחיתה',
-        utm_source: utm_source || null,
-        utm_medium: utm_medium || null,
-        utm_campaign: utm_campaign || null,
       })
       .select()
       .single();

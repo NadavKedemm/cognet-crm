@@ -6,13 +6,13 @@ export interface Lead {
   email: string;
   phone?: string;
   status: LeadStatus;
-  source: string;
+  source?: string;
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
   notes?: string;
   created_at: string;
-  updated_at: string;
+  updated_at?: string;
   event_count?: number;
 }
 
